@@ -1,0 +1,49 @@
+set history=700
+set background=dark
+set ruler
+set lazyredraw
+set mouse=a
+set number
+set expandtab
+set hlsearch
+set incsearch
+set shiftwidth=2
+set smartindent
+set smarttab
+set ignorecase
+set smartcase
+set tabstop=2
+set ttyfast
+set wildmenu
+set wildmode=list:longest,full
+set nocompatible
+set grepprg=ack
+set cursorline
+set clipboard=unnamed
+set undofile
+set viminfo^=%
+set backspace=indent,eol,start
+
+let g:pyflakes_use_quickfix = 0
+syntax on
+filetype on
+filetype indent on
+filetype plugin on
+
+
+set fillchars=vert:\ ,fold:\ " <- trailing space
+au FileType python,markdown,rst,haskell set cc=80
+
+cnoremap <C-A>  <Home>
+cnoremap <C-E>  <End>
+map      <C-A>  <Home>
+map      <C-E>  <End>
+imap     <C-A>  <Home>
+imap     <C-E>  <End>
+function! OpenJavascriptFile()
+    let l:foo = substitute(expand("%"), "coffee", "js", "")
+    exec "tabe " . l:foo
+endfunction
+map <C-J> :call OpenJavascriptFile() <Cr>
+nnoremap <F5> :GundoToggle<CR>
+
