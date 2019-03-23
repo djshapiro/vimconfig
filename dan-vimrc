@@ -1,49 +1,83 @@
-set history=700
+"informs vim that the background is dark?
 set background=dark
+"always show cursor position
 set ruler
+"don't update screen during macro and script execution
 set lazyredraw
+"enables mouse usage
 set mouse=a
+"shows line numbers 
 set number
+"convert tabs to spaces
 set expandtab
+"enable search highlighting
 set hlsearch
+"incremental serach that shows partial matches
 set incsearch
+"indent two spaces when shifting
 set shiftwidth=2
+"smart autoindenting when starting a new line
 set smartindent
+"insert ${tabstop} spaces when tab is pressed
 set smarttab
+"case-insensitive search
 set ignorecase
+"automatically switch search to case-sensitive when search query contains uppercase letter
 set smartcase
+"indent using two spaces
 set tabstop=2
+"seems to notify vim that we have a fast connection to the terminal - enables fast scrolling
 set ttyfast
+"display command line's autocomplete options in a menu
 set wildmenu
+"something about autocompletion, has many options
 set wildmode=list:longest,full
+"make vim incompatible with vi, which makes vim more useful
 set nocompatible
-set grepprg=ack
+"maybe the number of commands that the q: menu shows?
+set history=700
+"use ag as the searching program
+set grepprg=ag\ --nogroup\ --nocolor
+"underlines the active line
 set cursorline
+"uses the clipboard as the copy-paste buffer
 set clipboard=unnamed
+"gives each file its own undo file. best with persistent_undo
 set undofile
+"allows the creation of a viminfo file which stores things like command history between vim sessions. requires viminfo
 set viminfo^=%
+"allows the delete key to do its job
 set backspace=indent,eol,start
+"sets line numbers relative to the active line
+set relativenumber
 
-let g:pyflakes_use_quickfix = 0
+"enable syntax highlighting?
 syntax on
+"detect the filetype when opening a file, which enables syntax highlighting and options and stuff
 filetype on
+"filetype-specific indentation rules
 filetype indent on
+"load filetype-specific plugins when opening a file
 filetype plugin on
-
-
+"something about which characters to use for status lines, vertical separators, foldtext, etc
 set fillchars=vert:\ ,fold:\ " <- trailing space
+"for python, md, rst, and haskell, limit the character count to 80
 au FileType python,markdown,rst,haskell set cc=80
-
+"not really sure which does what here, but it turns ctrl-a into home and ctrl-e into end. I think the cnoremap do the actual remappings and the maps and imaps list the mappings (?).
 cnoremap <C-A>  <Home>
 cnoremap <C-E>  <End>
 map      <C-A>  <Home>
 map      <C-E>  <End>
 imap     <C-A>  <Home>
 imap     <C-E>  <End>
+
+"turns ctrl-j into a command that will open a js file from a coffee file
 function! OpenJavascriptFile()
     let l:foo = substitute(expand("%"), "coffee", "js", "")
     exec "tabe " . l:foo
 endfunction
 map <C-J> :call OpenJavascriptFile() <Cr>
+
+"maps the F5 key to the :GundoToggle command
 nnoremap <F5> :GundoToggle<CR>
 
