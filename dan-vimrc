@@ -1,3 +1,6 @@
+"run `vim --version` to verify that you have +clipboard
+"`brew install vim` if you have -clipboard
+
 "let g:ale_completion_enabled = 1
 "call plug#begin('~/.vim/plugged')
 "Plug 'w0rp/ale'
@@ -103,7 +106,4 @@ function! OpenJavascriptFile()
     exec "tabe " . l:foo
 endfunction
 map <C-J> :call OpenJavascriptFile() <Cr>
-
-"maps the F5 key to the :GundoToggle command
-nnoremap <F5> :GundoToggle<CR>
 
